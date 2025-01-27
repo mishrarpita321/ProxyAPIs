@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-// const fetch = require('node-fetch');
 const app = express();
 const axios = require('axios');
 const cors = require('cors');
@@ -44,51 +43,6 @@ app.post('/makeApiCall', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
-// app.post('/makeTextToSpeechCall', async (req, res) => {
-//     try {
-//         const { text, languageCode } = req.body;
-
-//         const endpoint = `https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${ttsKey}`;
-//         const payload = {
-//             audioConfig: {
-//                 audioEncoding: "MP3",
-//                 effectsProfileId: ["small-bluetooth-speaker-class-device"],
-//                 pitch: 0,
-//                 speakingRate: 1,
-//             },
-//             input: { text },
-//             voice: {
-//                 languageCode: languageCode === "en" ? "en-US" : "de-DE",
-//                 name: languageCode === "en" ? "en-US-Journey-F" : "de-DE-Standard-F",
-//             },
-//         };
-
-//         const response = await fetch(endpoint, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(payload),
-//         });
-
-//         if (!response.ok) {
-//             return res.status(response.status).json({ error: `TTS API call failed with status: ${response.status}` });
-//         }
-
-//         const data = await response.json();
-
-//         if (!data.audioContent) {
-//             return res.status(500).json({ error: "No audio content received from the API." });
-//         }
-
-//         res.json({ audioContent: data.audioContent });
-//     } catch (error) {
-//         console.error("Error in makeTextToSpeechCall endpoint:", error);
-//         res.status(500).json({ error: "Internal Server Error" });
-//     }
-// });
-
 
 app.post('/makeTextToSpeechCall', async (req, res) => {
     try {
